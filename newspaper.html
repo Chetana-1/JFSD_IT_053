@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flexbox</title>
+    <style>
+        .flex-container{
+            display:flex ;
+            flex-direction:column;
+            width: wrap;
+            height: 500px;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #fefae0;
+        }
+        nav{
+            font-family: 'Times New Roman', Times, serif;
+            padding: 8px 0;
+            border-top: 1px solid;
+            border-bottom: 1px solid;
+            display: flex;
+            justify-content: space-between;  
+        }
+        header{
+            font-family: 'Times New Roman', Times, serif;
+            font-size: medium;  
+        }
+        .main-article {
+            flex: 2;
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="flex-container">
+    <header>
+        <div>
+            <h1>Newspaper Article</h1>
+        </div>
+    </header>
+    <nav>
+        <h5>VOL. 202094</h5>
+        <h5>www.highfile.com</h5>
+        <h5>Price:$5</h5>
+    </nav>
+    <div class="main-article">
+        <p><i>By Lorem Egat</i></p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent ac lacus at felis posuere efficitur.</p>
+        <p>Aliquam erat volutpat. Nulla facilisi. Duis venenatis mi non magna varius convallis.</p>
+        <p>Vivamus vitae volutpat velit. Nunc sagittis sapien at amet suscipit porta.</p>
+    </div>
+      
+    </div>
+</body>
+</html>
