@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voter's portal</title>
+</head>
+<body>
+    <fieldset>
+        <h2 style="text-align: center;">Voter's Portral</h2>
+        <form id="Voter" style="display: flex; flex-direction:column; gap:10px;">
+            <label for="Name">Enter the name:</label>
+            <input type="text" placeholder="Enter the name" id="Name" required>
+            <label for="Age">Enter the age:</label>
+            <input type="number" placeholder="Enter the age" id="Age" required>
+            <label for="Nationality">Select Nationality:</label>
+            
+            <select name="Nationality" id="Nationality">
+                <option value="indian">Indian</option>
+                <option value="american">American</option>
+                <option value="european">European</option>
+                <option value="african">African</option>
+            </select>
+
+            <button type="submit" >Check Eligibility</button>
+        </form>
+        <p id="result" style="text-align: center; font-weight: bold;"></p>
+        <script>
+            var name1=document.getElementById("Name");
+            var age1=document.getElementById("Age");
+            var nationality= document.getElementById("Nationality");
+            var form=document.getElementById("Voter");
+
+            form.addEventListener('submit',function(event){
+                event.preventDefault();
+                checkEligibility();
+                form.reset();
+            }
+        );
+        function checkEligibility(){
+            var personName=name1.value;
+            var personAge=parseInt(age1.value);
+            var personNationality=nationality.value.toLowerCase();
+
+            if(personAge >= 18 && personNationality ==='indian'){
+                document.getElementById('result').textContent=personName+' is eligible to vote.';
+            }
+            else{
+                document.getElementById('result').textContent=personName+' is not eligible to vote.';
+            }
+        }
+        
+        </script>
+    </fieldset>
+     
+</body>
+</html>
+
