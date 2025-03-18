@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TIC TAC TOE</title>
+
+    <style>
+        h1 {
+            color:antiquewhite;
+            text-align: center;
+            font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        }
+        .board{
+            display: grid; 
+            grid-template-columns: repeat(3,100px);
+            grid-template-rows: repeat(3,100px); 
+            gap: 2px;
+            justify-content: center;
+            
+        }
+        .cell{
+            width: 100px;
+            height:100px;
+            background-color:rgb(248, 186, 166);
+            display: flex;
+            border-radius:5%;
+            justify-content: center;
+            align-items: center;
+            font-size: medium;
+            cursor:pointer;  
+        }
+        .cell:hover{
+            background-color: antiquewhite;
+        }
+        #status{
+            text-align: center;
+        }
+        button{
+            padding: 10px 20px;
+            background-color:antiquewhite;
+            border:none;
+            border-radius: 5%;
+            text-align: center;
+            cursor: pointer;
+            font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        }
+        button:hover{
+            background-color: rgb(248, 186, 166);
+        }
+    </style>
+</head>
+<body style="background-image: url(tbg.jpg); background-repeat: no-repeat;background-size: cover;">
+    
+    <h1>Tic Tac Toe</h1>
+    <div class="board">
+        <div class="cell" id="0"></div>
+        <div class="cell" id="1"></div>
+        <div class="cell" id="2"></div>
+        <div class="cell" id="3"></div>
+        <div class="cell" id="4"></div>
+        <div class="cell" id="5"></div>
+        <div class="cell" id="6"></div>
+        <div class="cell" id="7"></div>
+        <div class="cell" id="8"></div>
+    </div>
+    <p id="status" style="color:rgb(248, 186, 166);"><b>X's TURN</b></p>
+    <center><button id="reset">Restart</button></center>
+    
+    <script>
+        const cells = document.querySelectorAll(".cell");
+        const statusText = document.getElementById("status");
+        const resetButton = document.getElementById("reset");
+
+        let currentPlayer = "X";
+        let boardState = ["", "", "", "", "", "", "", "", ""];
+        let gameActive = true;
+
+        const winPatterns = [
+        [0, 1, 2], [3, 4, 5], [6, 7, 8], 
+        [0, 3, 6], [1, 4, 7], [2, 5, 8], 
+        [0, 4, 8], [2, 4, 6] 
+        ];
+
+        function handleClick(event) {
+            const index = event.target.id;
+
+            if (boardState[index] !== "" || !gameActive) return;
+
+            boardState[index] = currentPlayer;
+            event.target.textContent = currentPlayer;
+
+            if (checkWin()) {
+            statusText.textContent = `Player ${currentPlayer} wins! 🎉`;
+            gameActive = false;
+            } else if (!boardState.includes("")) {
+            statusText.textContent = "It's a draw! 🤝";
+            gameActive = false;
+            } else {
+            currentPlayer = currentPlayer === "X" ? "O" : "X";
+            statusText.textContent = `Player ${currentPlayer}'s turn`;
+            }
+        }
+        function checkWin() {
+            return winPatterns.some(pattern => 
+            pattern.every(index => boardState[index] === currentPlayer)
+            );
+        }
+
+        function resetGame() {
+            boardState.fill("");
+            cells.forEach(cell => (cell.textContent = ""));
+            currentPlayer = "X";
+            gameActive = true;
+            statusText.textContent = "Player X's turn";
+        }
+
+        cells.forEach(cell => cell.addEventListener("click", handleClick));
+        resetButton.addEventListener("click", resetGame);
+
+    </script>
+</body>
+</html>
